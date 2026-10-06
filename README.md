@@ -3,11 +3,16 @@
 Google Apps Script dat via de Samsara REST API (EU: `https://api.eu.samsara.com`) de
 assets (bussen) ophaalt en in een Google Sheet zet, zodat hubs het overzicht kunnen bekijken.
 
-Huidige kolommen (uit `GET /assets`): naam, kenteken, VIN, merk, model, bouwjaar,
-hub (= tagnaam, bijv. "Bleiswijk"), type, asset ID, tijdstip van verversen.
+Kolommen: naam, kenteken, VIN, merk, model, bouwjaar, hub (= tagnaam, bijv. "Bleiswijk"),
+type, temperatuur + meettijd van **Zone 1** en **Zone 2** (°C), asset ID, tijdstip van verversen.
 
-**Nog te doen:** per asset de sensor-ID's van de twee temperatuursensoren ophalen en de
-temperaturen toevoegen (zie `TODO` in `apps_script/Code.gs`).
+Per verversing 3 calls, ongeacht het aantal bussen: `GET /assets`, alle sensoren ophalen en
+één batch `POST /v1/sensors/temperature`. Metingen worden via `vehicleId` aan het asset-ID
+gekoppeld; de sensornaam ("Zone 1"/"Zone 2") bepaalt de kolom.
+
+**Nog te bevestigen met een echte call:** het endpoint voor "alle sensoren"
+(`fetchSensors_` in `Code.gs`, nu `POST /v1/sensors/list`) en dat `vehicleId` gelijk is aan het asset-ID.
+Metingen zonder passend asset komen in het uitvoerlogboek van het script.
 
 ## Setup
 
