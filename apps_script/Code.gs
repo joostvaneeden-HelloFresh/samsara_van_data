@@ -16,7 +16,7 @@ var SHEET_NAME = 'Bussen';
 var TOKEN_PROPERTY = 'SAMSARA_API_TOKEN';
 
 var ZONES = ['Zone 1', 'Zone 2'];   // sensornamen in Samsara
-var SENSOR_CHUNK = 100;             // sensor-ID's per temperatuur-request
+var SENSOR_CHUNK = 40;              // max 40 sensor-ID's per temperatuur-request (Samsara-limiet)
 
 var HEADERS = [
   'Naam', 'Kenteken', 'VIN', 'Merk', 'Model', 'Bouwjaar',
